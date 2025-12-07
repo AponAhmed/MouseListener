@@ -1,0 +1,45 @@
+{
+  "name": "mouse-listener-utility",
+  "version": "1.0.0",
+  "description": "A comprehensive mouse utility library for tracking mouse events, positions, and interactions in web applications",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "echo \"Open example/index.html in your browser to see the demo\""
+  },
+  "keywords": [
+    "mouse",
+    "listener",
+    "events",
+    "tracker",
+    "click",
+    "hover",
+    "drag",
+    "drop",
+    "cursor",
+    "position",
+    "utility"
+  ],
+  "author": "APON",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AponAhmed/MouseListener.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AponAhmed/MouseListener/issues"
+  },
+  "homepage": "https://github.com/AponAhmed/MouseListener",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
+}

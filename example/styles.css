@@ -1,0 +1,667 @@
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #ec4899;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --dark: #1f2937;
+    --dark-lighter: #374151;
+    --light: #f3f4f6;
+    --white: #ffffff;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    cursor: none;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   Custom Cursor
+   ======================================== */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.custom-cursor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: var(--spacing-xs);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+/* ========================================
+   Container & Layout
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+main.container {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+
+/* ========================================
+   Demo Sections
+   ======================================== */
+.demo-section {
+    margin-bottom: var(--spacing-xl);
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.demo-section:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.demo-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.demo-section:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.demo-section:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.demo-section:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.demo-section:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.demo-section:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.demo-section:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.demo-section h2 {
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   Demo Cards
+   ======================================== */
+.demo-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.demo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ========================================
+   Position Display
+   ======================================== */
+.position-display {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-lg);
+}
+
+.coord-item {
+    text-align: center;
+}
+
+.coord-item .label {
+    display: block;
+    font-size: 1rem;
+    color: var(--dark-lighter);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.coord-item .value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   Movement Display
+   ======================================== */
+.movement-display {
+    padding: var(--spacing-md);
+}
+
+.movement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.movement-item .label {
+    font-weight: 600;
+    color: var(--dark-lighter);
+}
+
+.movement-item .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.speed-bar {
+    width: 100%;
+    height: 20px;
+    background: var(--light);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: var(--spacing-md);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.speed-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    transition: width 0.1s ease;
+    border-radius: 10px;
+}
+
+/* ========================================
+   Demo Grid
+   ======================================== */
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* ========================================
+   Click Zones
+   ======================================== */
+.click-zone {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    box-shadow: var(--shadow-md);
+}
+
+.click-zone:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.click-zone.clicked {
+    animation: pulse 0.3s ease;
+    background: var(--gradient-primary);
+}
+
+.click-zone.clicked h3,
+.click-zone.clicked .click-count {
+    color: var(--white);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.click-zone h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.click-count {
+    font-size: 1.25rem;
+    color: var(--dark-lighter);
+    font-weight: 600;
+}
+
+.click-count span {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* ========================================
+   Hover Zones
+   ======================================== */
+.hover-zone {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 3px dashed var(--light);
+    box-shadow: var(--shadow-md);
+}
+
+.hover-zone h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-sm);
+    transition: color 0.3s ease;
+}
+
+.hover-status {
+    font-size: 1.125rem;
+    color: var(--dark-lighter);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.hover-zone.hovered {
+    background: var(--gradient-success);
+    border-color: var(--success);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.hover-zone.hovered h3,
+.hover-zone.hovered .hover-status {
+    color: var(--white);
+}
+
+/* ========================================
+   Drag and Drop
+   ======================================== */
+.drag-container {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+}
+
+.draggable {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+    transition: none;
+    box-shadow: var(--shadow-md);
+    user-select: none;
+}
+
+.draggable span {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.draggable:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.draggable.dragging {
+    opacity: 0.8;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+    transform: scale(1.1) rotate(5deg);
+    z-index: 100;
+}
+
+.drag-info {
+    position: absolute;
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--dark-lighter);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+/* ========================================
+   Button Tracker
+   ======================================== */
+.button-status {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.button-indicator {
+    flex: 1;
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: var(--light);
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.button-indicator.pressed {
+    background: var(--gradient-primary);
+    border-color: var(--primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.button-indicator .btn-label {
+    display: block;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--dark);
+    transition: color 0.3s ease;
+}
+
+.button-indicator .btn-status {
+    display: block;
+    font-size: 1rem;
+    color: var(--dark-lighter);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.button-indicator.pressed .btn-label,
+.button-indicator.pressed .btn-status {
+    color: var(--white);
+}
+
+/* ========================================
+   Scroll Wheel
+   ======================================== */
+.scroll-demo {
+    padding: 0;
+    overflow: hidden;
+}
+
+.scroll-content {
+    padding: var(--spacing-lg);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    transition: background-color 0.2s ease;
+    cursor: default;
+}
+
+.scroll-content p {
+    font-size: 1.125rem;
+    color: var(--dark-lighter);
+    font-weight: 600;
+}
+
+.scroll-indicator {
+    font-size: 3rem;
+    font-weight: 800;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: var(--light);
+    min-width: 150px;
+    text-align: center;
+    color: var(--primary);
+}
+
+.scroll-stats {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.scroll-stats p {
+    font-size: 1rem;
+    color: var(--dark-lighter);
+}
+
+.scroll-stats span {
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* ========================================
+   Click Counter
+   ======================================== */
+.counter-zone {
+    text-align: center;
+    padding: var(--spacing-xl);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+}
+
+.counter-zone:hover {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.counter-zone.counting {
+    animation: counterPulse 0.2s ease;
+}
+
+@keyframes counterPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.counter-zone h3 {
+    font-size: 1.75rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.counter-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.counter-value {
+    font-size: 5rem;
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.counter-label {
+    font-size: 1.125rem;
+    color: var(--dark-lighter);
+    font-weight: 600;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .demo-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .demo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .position-display {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .draggable {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+    body {
+        cursor: default;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
+}

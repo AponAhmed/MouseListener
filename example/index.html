@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseListener Utility - Interactive Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🖱️ MouseListener Utility</h1>
+            <p>Comprehensive Mouse Event Tracking & Utilities</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Mouse Position Tracker -->
+        <section class="demo-section">
+            <h2>📍 Mouse Position Tracker</h2>
+            <div class="demo-card">
+                <div class="position-display">
+                    <div class="coord-item">
+                        <span class="label">X:</span>
+                        <span class="value" id="posX">0</span>
+                    </div>
+                    <div class="coord-item">
+                        <span class="label">Y:</span>
+                        <span class="value" id="posY">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movement Tracker -->
+        <section class="demo-section">
+            <h2>⚡ Movement Tracker</h2>
+            <div class="demo-card">
+                <div class="movement-display">
+                    <div class="movement-item">
+                        <span class="label">Speed:</span>
+                        <span class="value" id="speed">0</span>
+                    </div>
+                    <div class="movement-item">
+                        <span class="label">Angle:</span>
+                        <span class="value" id="angle">0°</span>
+                    </div>
+                    <div class="speed-bar">
+                        <div class="speed-fill" id="speedBar"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Click Detector -->
+        <section class="demo-section">
+            <h2>👆 Click Detector</h2>
+            <div class="demo-grid">
+                <div class="click-zone" id="singleClick">
+                    <h3>Single Click</h3>
+                    <p class="click-count">Clicks: <span id="singleCount">0</span></p>
+                </div>
+                <div class="click-zone" id="doubleClick">
+                    <h3>Double Click</h3>
+                    <p class="click-count">Clicks: <span id="doubleCount">0</span></p>
+                </div>
+                <div class="click-zone" id="rightClick">
+                    <h3>Right Click</h3>
+                    <p class="click-count">Clicks: <span id="rightCount">0</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hover Tracker -->
+        <section class="demo-section">
+            <h2>🎯 Hover Tracker</h2>
+            <div class="demo-grid">
+                <div class="hover-zone" id="hover1">
+                    <h3>Zone 1</h3>
+                    <p class="hover-status">Hover me!</p>
+                </div>
+                <div class="hover-zone" id="hover2">
+                    <h3>Zone 2</h3>
+                    <p class="hover-status">Hover me!</p>
+                </div>
+                <div class="hover-zone" id="hover3">
+                    <h3>Zone 3</h3>
+                    <p class="hover-status">Hover me!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drag and Drop -->
+        <section class="demo-section">
+            <h2>🎨 Drag and Drop</h2>
+            <div class="demo-card drag-container">
+                <div class="draggable" id="draggable1">
+                    <span>Drag Me!</span>
+                </div>
+                <div class="draggable" id="draggable2">
+                    <span>Drag Me Too!</span>
+                </div>
+                <div class="draggable" id="draggable3">
+                    <span>And Me!</span>
+                </div>
+                <p class="drag-info" id="dragInfo">Click and drag any box</p>
+            </div>
+        </section>
+
+        <!-- Mouse Buttons -->
+        <section class="demo-section">
+            <h2>🔘 Mouse Button Tracker</h2>
+            <div class="demo-card">
+                <div class="button-status">
+                    <div class="button-indicator" id="leftBtn">
+                        <span class="btn-label">Left</span>
+                        <span class="btn-status">Released</span>
+                    </div>
+                    <div class="button-indicator" id="middleBtn">
+                        <span class="btn-label">Middle</span>
+                        <span class="btn-status">Released</span>
+                    </div>
+                    <div class="button-indicator" id="rightBtn">
+                        <span class="btn-label">Right</span>
+                        <span class="btn-status">Released</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Wheel -->
+        <section class="demo-section">
+            <h2>🔄 Scroll Wheel Tracker</h2>
+            <div class="demo-card scroll-demo">
+                <div class="scroll-content" id="scrollArea">
+                    <p>Scroll inside this area with your mouse wheel</p>
+                    <div class="scroll-indicator">
+                        <span id="scrollDirection">---</span>
+                    </div>
+                    <div class="scroll-stats">
+                        <p>Delta Y: <span id="scrollDelta">0</span></p>
+                        <p>Total Scrolls: <span id="scrollCount">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Click Counter -->
+        <section class="demo-section">
+            <h2>🔢 Click Counter</h2>
+            <div class="demo-card">
+                <div class="counter-zone" id="counterZone">
+                    <h3>Click rapidly!</h3>
+                    <div class="counter-display">
+                        <span class="counter-value" id="counterValue">0</span>
+                        <span class="counter-label">clicks in 2 seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>MouseListener Utility v1.0.0 | MIT License</p>
+        </div>
+    </footer>
+
+    <!-- Load the library -->
+    <script type="module">
+        import {
+            MousePosition,
+            ClickDetector,
+            HoverTracker,
+            DragAndDrop,
+            MouseButtons,
+            ScrollWheel,
+            MovementTracker,
+            ClickCounter,
+            CustomCursor
+        } from '../src/index.js';
+
+        // Initialize Mouse Position Tracker
+        const posTracker = new MousePosition(document, (pos) => {
+            document.getElementById('posX').textContent = pos.x;
+            document.getElementById('posY').textContent = pos.y;
+        });
+
+        // Initialize Movement Tracker
+        const moveTracker = new MovementTracker(document, (data) => {
+            const speed = Math.min(data.speed * 1000, 100); // Cap at 100 for display
+            document.getElementById('speed').textContent = speed.toFixed(2);
+            document.getElementById('angle').textContent = data.angle.toFixed(1) + '°';
+            document.getElementById('speedBar').style.width = speed + '%';
+        });
+
+        // Initialize Click Detectors
+        let singleClickCount = 0;
+        let doubleClickCount = 0;
+        let rightClickCount = 0;
+
+        const singleClickDetector = new ClickDetector(document.getElementById('singleClick'), {
+            onClick: () => {
+                singleClickCount++;
+                document.getElementById('singleCount').textContent = singleClickCount;
+                document.getElementById('singleClick').classList.add('clicked');
+                setTimeout(() => document.getElementById('singleClick').classList.remove('clicked'), 300);
+            }
+        });
+
+        const doubleClickDetector = new ClickDetector(document.getElementById('doubleClick'), {
+            onDoubleClick: () => {
+                doubleClickCount++;
+                document.getElementById('doubleCount').textContent = doubleClickCount;
+                document.getElementById('doubleClick').classList.add('clicked');
+                setTimeout(() => document.getElementById('doubleClick').classList.remove('clicked'), 300);
+            }
+        });
+
+        const rightClickDetector = new ClickDetector(document.getElementById('rightClick'), {
+            onRightClick: () => {
+                rightClickCount++;
+                document.getElementById('rightCount').textContent = rightClickCount;
+                document.getElementById('rightClick').classList.add('clicked');
+                setTimeout(() => document.getElementById('rightClick').classList.remove('clicked'), 300);
+            }
+        });
+
+        // Initialize Hover Trackers
+        [1, 2, 3].forEach(num => {
+            const zone = document.getElementById(`hover${num}`);
+            new HoverTracker(zone, {
+                onEnter: () => {
+                    zone.classList.add('hovered');
+                    zone.querySelector('.hover-status').textContent = 'Hovering! 🎯';
+                },
+                onLeave: () => {
+                    zone.classList.remove('hovered');
+                    zone.querySelector('.hover-status').textContent = 'Hover me!';
+                }
+            });
+        });
+
+        // Initialize Drag and Drop
+        ['draggable1', 'draggable2', 'draggable3'].forEach((id, index) => {
+            const element = document.getElementById(id);
+
+            // Set initial position based on index
+            const container = element.parentElement.getBoundingClientRect();
+            const spacing = 20;
+            const startX = container.left + spacing + (index * 170);
+            const startY = container.top + 100;
+
+            element.style.left = startX + 'px';
+            element.style.top = startY + 'px';
+
+            new DragAndDrop(element, {
+                onStart: (event, pos) => {
+                    element.classList.add('dragging');
+                    element.style.transition = 'none';
+                    document.getElementById('dragInfo').textContent = `Dragging ${id}...`;
+                },
+                onDrag: (event, pos, delta) => {
+                    const currentLeft = parseFloat(element.style.left) || 0;
+                    const currentTop = parseFloat(element.style.top) || 0;
+                    element.style.left = (currentLeft + delta.x - (element.lastDelta?.x || 0)) + 'px';
+                    element.style.top = (currentTop + delta.y - (element.lastDelta?.y || 0)) + 'px';
+                    element.lastDelta = delta;
+                },
+                onEnd: (event, pos, delta) => {
+                    element.classList.remove('dragging');
+                    element.lastDelta = null;
+                    document.getElementById('dragInfo').textContent = `Moved ${Math.abs(delta.x).toFixed(0)}px horizontally, ${Math.abs(delta.y).toFixed(0)}px vertically`;
+                }
+            });
+        });
+
+        // Initialize Mouse Button Tracker
+        const buttonTracker = new MouseButtons();
+
+        function updateButtonDisplay() {
+            const states = buttonTracker.getButtonStates();
+
+            const leftBtn = document.getElementById('leftBtn');
+            const middleBtn = document.getElementById('middleBtn');
+            const rightBtn = document.getElementById('rightBtn');
+
+            leftBtn.classList.toggle('pressed', states.left);
+            leftBtn.querySelector('.btn-status').textContent = states.left ? 'Pressed' : 'Released';
+
+            middleBtn.classList.toggle('pressed', states.middle);
+            middleBtn.querySelector('.btn-status').textContent = states.middle ? 'Pressed' : 'Released';
+
+            rightBtn.classList.toggle('pressed', states.right);
+            rightBtn.querySelector('.btn-status').textContent = states.right ? 'Pressed' : 'Released';
+
+            requestAnimationFrame(updateButtonDisplay);
+        }
+        updateButtonDisplay();
+
+        // Initialize Scroll Wheel Tracker
+        let scrollCount = 0;
+        const scrollArea = document.getElementById('scrollArea');
+
+        new ScrollWheel(scrollArea, (data) => {
+            scrollCount++;
+            document.getElementById('scrollDirection').textContent = data.direction.toUpperCase();
+            document.getElementById('scrollDelta').textContent = data.deltaY.toFixed(0);
+            document.getElementById('scrollCount').textContent = scrollCount;
+
+            scrollArea.style.backgroundColor = data.direction === 'down'
+                ? 'rgba(255, 100, 100, 0.1)'
+                : 'rgba(100, 100, 255, 0.1)';
+
+            setTimeout(() => {
+                scrollArea.style.backgroundColor = '';
+            }, 200);
+        });
+
+        // Initialize Click Counter
+        new ClickCounter(document.getElementById('counterZone'), {
+            timeWindow: 2000,
+            callback: (count) => {
+                document.getElementById('counterValue').textContent = count;
+                const counterZone = document.getElementById('counterZone');
+                counterZone.classList.add('counting');
+                setTimeout(() => counterZone.classList.remove('counting'), 200);
+            }
+        });
+
+        // Initialize Custom Cursor
+        const customCursor = new CustomCursor(document.getElementById('customCursor'), {
+            smooth: true,
+            offset: { x: -10, y: -10 }
+        });
+
+        console.log('🖱️ MouseListener Demo Ready!');
+        console.log('All utilities are active. Try interacting with the page!');
+    </script>
+</body>
+
+</html>
